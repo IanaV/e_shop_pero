@@ -1,0 +1,13 @@
+{% extends 'home/layout.html' %}
+
+{% block title %}Удаление продукта{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>Удаление продукта</h1>
+        <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-success" type="submit">Удалить продукт</button>
+        </form>
+    </div>
+{% endblock %}

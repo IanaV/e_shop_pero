@@ -1,0 +1,27 @@
+{% extends 'home/layout.html' %}
+
+{% block title %}Форма по добавлению клиента{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>Форма по добавлению клиента</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.first_name }}<br>
+            {{ form.last_name }}<br>
+            {{ form.email }}<br>
+             {{ form.phone }}<br>
+
+            <span>{{ error }}</span>
+            <button class="btn btn-success" type="submit">Добавить продавца</button>
+        </form>
+    </div>
+{% endblock %}
+
+<!--fields = ['first_name', 'last_name','email','phone', 'date','position',]-->
+<!--     labels = {-->
+<!--            'first_name': 'Имя',-->
+<!--            'last_name': 'Фамилия',-->
+<!--            'email': 'Email',-->
+<!--            'phone': 'Номер телефона'-->
+<!--        }-->

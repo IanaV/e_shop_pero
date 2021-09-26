@@ -1,0 +1,41 @@
+{% extends 'home/layout.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-around">
+        <div class="row mr-3 ">
+            <div class="col-md-6 offset-md-3">
+                <form method="post" class="justify-content-around text-white pl-n2">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-info text-white mt-3">Получить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="row justify-content-center">
+            {% for i in list_customer %}
+                <div class="col-md-5 mt-3">
+                    <div class="card border-primary mb-3">
+                        <div class="card-body">
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{{ i.last_name }} {{ i.first_name }}</li>
+                                    <li class="list-group-item">Номер телефона: {{ i.phone }}</li>
+                                    <li class="list-group-item">
+                                        Email: {% firstof i.email "Отсутствует" %}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+            <div class=" mt-5 text-white">
+<!--            <span class="text-white">-->
+                Нет результатов для этого значения
+<!--            </span>-->
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

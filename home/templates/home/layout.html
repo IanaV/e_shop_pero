@@ -1,0 +1,80 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+</head>
+
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info bg-gradient">
+    <div class="container">
+
+        <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Выйти</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active " aria-current="page" href="{% url 'login' %}">Войти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Регистрация</a>
+                    </li>
+                {% endif %}
+            </ul>
+            {% if request.user.is_authenticated %}
+               <div class="inline my-2 my-lg-0">
+                <small>Привет, <strong>
+                    <a href="{% url 'profile' %}">{{ request.user.username }}</a>!
+                </strong></small></div>
+            <a class="nav-link active " aria-current="page" href="{% url 'profile_edit' %}">Редактировать</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+</header>
+
+    <aside>
+
+        <span class="logo">e-shop</span>
+        <h3>Навигация</h3>
+        <ul>
+            <a href="{% url 'home' %}"><li><i class="fas fa-home"></i> Главная</li></a>
+
+
+            <a href="{% url 'products_home' %}"><li><i class="fas fa-newspaper"></i> Товары</li></a>
+             <a href="{% url 'sellers_home' %}"><li><i class="fas fa-newspaper"></i> Наши продавцы</li></a>
+             <a href="{% url 'customers_home' %}"><li><i class="fas fa-newspaper"></i> Наши клиенты</li></a>
+            <a href="{% url 'orders_home' %}"><li><i class="fas fa-newspaper"></i> Заказы</li></a>
+            <a href="{% url 'report' %}"><li><i class="fas fa-newspaper"></i> Отчет 1</li></a>
+             <a href="{% url 'report_2' %}"><li><i class="fas fa-newspaper"></i> Отчет 2</li></a>
+            <a href="{% url 'report_3' %}"><li><i class="fas fa-newspaper"></i> Отчет 3</li></a>
+            <a href="{% url 'report_4' %}"><li><i class="fas fa-newspaper"></i> Отчет 4</li></a>
+            <a href="{% url 'report_5' %}"><li><i class="fas fa-newspaper"></i> Отчет 5</li></a>
+
+
+
+            <a href="{% url 'create' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i> Добавить товар</button></li></a>
+            <a href="{% url 'create_seller' %}"><li><button class="btn btn-warning"><i class="fas fa-plus-circle"></i> Добавить продавца</button></li></a>
+            <a href="{% url 'create_customer' %}"><li><button class="btn btn-primary"><i class="fas fa-plus-circle"></i> Добавить клиента</button></li></a>
+            <a href="{% url 'create_order' %}"><li><button class="btn btn-link"><i class="fas fa-plus-circle"></i> Добавить заказ</button></li></a>
+
+
+
+  </ul>
+    </aside>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

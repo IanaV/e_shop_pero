@@ -1,0 +1,22 @@
+{% extends 'home/layout.html' %}
+
+{% block title %}Информация о заказах{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>Информация о заказах</h1>
+        {% if orders %}
+            {% for el in orders %}
+                <div class="alert alert-warning">
+                    <h3>{{ el.customer }}</h3>
+                    <p>{{ el.product }}</p>
+                    <a href="{% url 'order-detail' el.id %}" class="btn btn-warning">Читать детальнее</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>У вас нет записей!</p>
+        {% endif %}
+
+        {# Комментарий #}
+    </div>
+{% endblock %}

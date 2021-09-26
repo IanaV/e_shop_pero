@@ -1,0 +1,30 @@
+{% extends 'home/layout.html' %}
+
+{% block content %}
+    <div class="container mt-4 bg-dark text-black">
+        <div class="row">
+            {% for user in list_profile %}
+                <div class="col-lg-6">
+                    <div class="card mb-2 bg-dark">
+                        <div class="row g-0">
+
+                            <div class="col-md-12">
+                                <div class="card-body bg-primary">
+                                    <h5 class="card-title">{{ user.user.first_name }} {{ user.user.last_name }}</h5>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Ник : {{ user.user.username }}</li>
+                                        <li class="list-group-item">Город: {{ user.city }}</li>
+                                        <li class="list-group-item">Телефон: {{ user.phone }}</li>
+                                        <li class="list-group-item">Email: {{ user.user.email }}</li>
+                                        <li class="list-group-item">Дата регистрации: {{ user.user.date_joined }}</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

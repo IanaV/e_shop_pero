@@ -1,0 +1,17 @@
+{% extends 'home/layout.html' %}
+
+{% block title %}{{ product.title }}{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>{{ product.name }}</h1>
+        <img src="{{ product.image.url }}" width="189" height="255">
+        <p>Описание: {{ product.description }}</p>
+        <p>{{ product.price }} грн</p>
+        <p>{{ product.stock }} шт</p>
+        <a href="{% url 'products-delete' product.id %}" class="btn btn-danger">Удалить</a>
+        <a href="{% url 'products-update' product.id %}" class="btn btn-info">Редактировать</a>
+    </div>
+{% endblock %}
+
+<!--['name', 'slug','image','description', 'price','stock',]-->

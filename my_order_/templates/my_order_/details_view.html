@@ -1,0 +1,17 @@
+{% extends 'home/layout.html' %}
+
+{% block title %}{{ order.title }}{% endblock %}
+
+{% block content %}
+    <div class="features">
+   <ul class="list-group">
+                                <li class="list-group-item">Покупатель: {{ order.customer }}</li>
+                                <li class="list-group-item">Продавец: {{ order.seller }}</li>
+                                <li class="list-group-item">Продукт: {{ order.product|truncatechars:55 }}</li>
+                                <li class="list-group-item">Дата: {{ order.date }}</li>
+                                <li class="list-group-item">Сумма: {{ order.total }} &#8372</li>
+                            </ul>
+        <a href="{% url 'orders-delete' orders.id %}" class="btn btn-danger">Удалить</a>
+        <a href="{% url 'orders-update' orders.id %}" class="btn btn-info">Редактировать</a>
+    </div>
+{% endblock %}
